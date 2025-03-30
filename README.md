@@ -6,7 +6,7 @@ I cannot guarantee it will work for every organism or dataset, especially for or
 
 Please do not hesitate to ask questions, as I am going on a journey here to learn either Snakemake or Nextflow for this process. I am not a CLASICALLY trained bioinformatician or programmer - I was just a graduate student/researcher at the time I made my first repository (which, in retrospect, was more just an online host for my work instruction file), but I did make a de novo, telomere-to-telomere, haplotype phased assembly. As stated above, this repository is me furthering my skills by turning it into a scaleable pipeline.
 
-For more information, please feel free to contact myself or Dr. Matthew Anderson (https://genetics.wisc.edu/staff/anderson-matt/), my Ph.D. advisor during my time at The Ohio State University. For some of the results that came from near-complete products of the original assembly protocol work (https://github.com/FrostFlow13/1376-denovo-assembly), please see Chapter 3 of my dissertation (http://rave.ohiolink.edu/etdc/view?acc_num=osu1712852304413336).
+For more information, please feel free to contact myself or Dr. Matthew Anderson (https://genetics.wisc.edu/staff/anderson-matt/), my Ph.D. advisor during my time at The Ohio State University. For some of the results that came from near-complete products of the original assembly protocol work (https://github.com/FrostFlow13/1376-denovo-assembly), please see Chapter 3 of my dissertation (http://rave.ohiolink.edu/etdc/view?acc_num=osu1712852304413336). The read dataset will be publically available on May 5 2025 at "BioProject: PRJNA1117514".
 
 ______________
 
