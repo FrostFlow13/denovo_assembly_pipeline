@@ -1,6 +1,6 @@
 # denovo_assembly_pipeline
 
-Hello! This is Dr. Andrew Woodruff, and this repository is an attempt to turn the code/processes I used for generation of de novo assemblies using deep long- and short-read sequencing for a heterozygous, diploid organism (https://github.com/FrostFlow13/1376-denovo-assembly) into a proper scaleable, semi-automated pipeline (with some itentionally manual steps). 
+Hello! This is Dr. Andrew Woodruff, and this repository is an attempt to turn the code/processes I used for generation of de novo assemblies using deep long- and short-read sequencing for a heterozygous, diploid organism (https://github.com/FrostFlow13/1376-denovo-assembly) into a proper scaleable, semi-automated pipeline (with some intentionally manual steps). 
 
 I cannot guarantee it will work for every organism or dataset, especially for organisms/strains that have low heterozygosity of their genomes or long (~75-100+ kb) tracts of homozygosity between heterozygous regions, but it worked for a CRISPR-competent strain of _Candida albicans_ SC5314 (a diploid single-celled yeast, and specifically a Chr5AB disomic derivative of AHY940 from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5422035/, designated MAY1376).
 
