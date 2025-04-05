@@ -1,4 +1,4 @@
-# denovo_assembly_pipeline
+# DeNoAsPi (_De Novo_ Assembly Pipeline)
 
 Hello! This is Dr. Andrew Woodruff, and this repository is an attempt to turn the code/processes I used for generation of de novo assemblies using deep long- and short-read sequencing for a heterozygous, diploid organism (https://github.com/FrostFlow13/1376-denovo-assembly) into a proper scalable, semi-automated pipeline (with some intentionally manual steps).
 

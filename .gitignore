@@ -1,8 +1,8 @@
 # results directories
 *_results/
 # default nextflow working directory
-work
-# nextflow logs
-*.nextflow.log*
-# nextflow tmp directory
-.nextflow/
+work/
+# hidden nextflow files/directories
+.nextflow*
+# non-hidden nextflow files/directory
+nextflow*
