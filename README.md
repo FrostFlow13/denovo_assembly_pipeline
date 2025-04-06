@@ -46,7 +46,7 @@ The workflow was developed and tested on the following:
 ### Setup - Nextflow and Java
 
    ```bash
-   
+   [IN DEVELOPMENT]
    ```
 
 ## Usage
