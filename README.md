@@ -2,13 +2,43 @@
 
 Hello! This is Dr. Andrew Woodruff, and this repository is an attempt to turn the code/processes I used for generation of de novo assemblies using deep long- and short-read sequencing for a heterozygous, diploid organism (https://github.com/FrostFlow13/1376-denovo-assembly) into a proper scalable, semi-automated pipeline (with some intentionally manual steps).
 
+## Setup Guide
+
+The workflow was developed and tested on the following:
+
+ * Ubuntu [24.04.1 LTS]
+ * Bash [GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)]
+ * [Nextflow](https://www.nextflow.io/) [24.10.5]
+ * Java [openjdk version "17.0.10" 2024-01-16]
+   * For both Nextflow and Java, installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc
+ * Conda [25.1.1]
+ * Mamba [2.0.8]
+
+### Setup - Conda and Mamba
+
+Conda:
+   ```bash
+   # Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9
+   wget https://repo.anaconda.com/miniconda/Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
+   
+   # Runs the installation script
+   bash https://repo.anaconda.com/miniconda/Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
+```
+   
+
+## Usage
+
+[IN DEVELOPMENT]
+
+## Closing Information
+
 For more information, please feel free to contact myself or Dr. Matthew Anderson (https://genetics.wisc.edu/staff/anderson-matt/), my Ph.D. advisor during my time at The Ohio State University. For some of the results that came from near-complete products of the original assembly protocol work (https://github.com/FrostFlow13/1376-denovo-assembly), please see Chapter 3 of my dissertation (http://rave.ohiolink.edu/etdc/view?acc_num=osu1712852304413336). The read dataset will be publicly available on May 5 2025 at "BioProject: PRJNA1117514". I am also more than happy to provide my in-progress _Candida albicans_ SC5314 assembly upon request (the step I last ended on was manually validating long (~8+ bp) homopolymers).
 
 I cannot guarantee it will work for every organism or dataset, especially for organisms/strains that have low heterozygosity of their genomes or long (~75-100+ kb) tracts of homozygosity between heterozygous regions, but it worked for a CRISPR-competent strain of _Candida albicans_ SC5314 (a diploid single-celled yeast, and specifically a Chr5AB disomic derivative of AHY940 from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5422035/, designated MAY1376).
 
 Please do not hesitate to ask questions, as I am going on a journey here to learn either Snakemake or Nextflow for this process. I am not a CLASSICALLY trained bioinformatician or programmer beyond a few classes - I was just a graduate student/researcher at the time I made my first repository (which, in retrospect, was more just an online host for my work instruction file), but I did make a de novo, telomere-to-telomere, haplotype phased assembly. As stated above, this repository is me furthering my skills by turning it into a scalable pipeline.
 
-______________
+## Background on Data Used for Development
 
 For full disclosure, the following was what I did prior to running this pipeline:
 
