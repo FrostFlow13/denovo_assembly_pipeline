@@ -11,9 +11,10 @@ The workflow was developed and tested on the following:
  * Conda [25.1.1]
  * [Nextflow](https://www.nextflow.io/) [24.10.5]
  * Java [openjdk version "17.0.10" 2024-01-16]
-   * For both Nextflow and Java, installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc
 
 ### Setup - Conda
+
+Perform the following steps to set up Conda 25.1.1. This is important, as Conda 25.3.X appears to be incompatible with Nextflow 24.10.5 (Nextflow cannot make Conda environments, dude to it using a depreciated argument).
 
    ```bash
    # Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9
@@ -35,7 +36,7 @@ The workflow was developed and tested on the following:
    
    # If it passes, remove the installer
    rm Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
-
+   
    # Setup Conda's channels
    conda config --add channels defaults
    conda config --add channels bioconda
@@ -45,9 +46,39 @@ The workflow was developed and tested on the following:
 
 ### Setup - Nextflow and Java
 
+For both Nextflow and Java, installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc.
+
    ```bash
-   [IN DEVELOPMENT]
+   # Install SDKMan
+   curl -s https://get.sdkman.io | bash
+   
+   # Close the terminal and open a new terminal
+   
+   # Install Java
+   sdk install java 17.0.10-tem
+   
+   # Confirm Java is installed correctly
+   java -version
+   
+   # Install Nextflow in the current directory (ideally the home directory)
+   curl -s https://get.nextflow.io | bash
+   
+   # Make Nextflow executable
+   chmod +x nextflow
+   
+   # Move Nextflow into an executable path
+   mkdir -p $HOME/.local/bin/
+   mv nextflow $HOME/.local/bin/
+   
+   # Adds the $HOME/.local/bin/ to PATH permanently
+   echo "# Adds the $HOME/.local/bin/ to PATH for Nextflow" >> $HOME/.bashrc
+   echo "export PATH="$PATH:$HOME/.local/bin"" >> $HOME/.bashrc
    ```
+
+If you are using a version of Nextflow differing from 24.10.5, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatability issues):
+`NXF_VER=24.10.5 nextflow [run/info/etc]`
+
+The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older version if necessary.
 
 ## Usage
 
