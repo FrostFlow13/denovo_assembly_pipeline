@@ -14,7 +14,7 @@ The workflow was developed and tested on the following:
 
 ### Setup - Conda
 
-Perform the following steps to set up Conda 25.1.1. This is important, as Conda 25.3.X appears to be incompatible with Nextflow 24.10.5 (Nextflow cannot make Conda environments, dude to it using a depreciated argument).
+Perform the following steps to set up Conda 25.1.1. This is important, as Conda 25.3.X appears to be incompatible with Nextflow 24.10.5 (Nextflow cannot make Conda environments, due to it using a depreciated argument).
 
    ```bash
    # Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9
