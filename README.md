@@ -8,23 +8,46 @@ The workflow was developed and tested on the following:
 
  * Ubuntu [24.04.1 LTS]
  * Bash [GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)]
+ * Conda [25.1.1]
  * [Nextflow](https://www.nextflow.io/) [24.10.5]
  * Java [openjdk version "17.0.10" 2024-01-16]
    * For both Nextflow and Java, installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc
- * Conda [25.1.1]
- * Mamba [2.0.8]
 
-### Setup - Conda and Mamba
+### Setup - Conda
 
-Conda:
    ```bash
    # Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9
    wget https://repo.anaconda.com/miniconda/Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
    
    # Runs the installation script
-   bash https://repo.anaconda.com/miniconda/Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
-```
+   bash Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
    
+   # When prompted to review a license agreement, use the up and down arrow keys to navigate to the bottom, then enter "yes" to agree when prompted to accept the license
+   
+   # Verify installation directory (default is the user's home directory - this is where we want it!) - press Enter to confirm
+   
+   # When asked whether to update the shell profile to initialize Conda by default, enter "yes" - this will launch conda whenever you start up a session
+   
+   # Close your shell/session and open a new one, and you should see (base) in the command line - Conda is working
+   
+   # Test Conda for functionality
+   conda list
+   
+   # If it passes, remove the installer
+   rm Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
+
+   # Setup Conda's channels
+   conda config --add channels defaults
+   conda config --add channels bioconda
+   conda config --add channels conda-forge
+   conda config --set channel_priority strict
+```
+
+### Setup - Nextflow and Java
+
+   ```bash
+   
+   ```
 
 ## Usage
 
