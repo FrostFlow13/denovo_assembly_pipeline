@@ -71,8 +71,8 @@ For both Nextflow and Java, installation was performed exactly as written in the
    mv nextflow $HOME/.local/bin/
    
    # Adds the $HOME/.local/bin/ to PATH permanently
-   echo "# Adds the $HOME/.local/bin/ to PATH for Nextflow" >> $HOME/.bashrc
-   echo "export PATH="$PATH:$HOME/.local/bin"" >> $HOME/.bashrc
+   echo '# Adds the $HOME/.local/bin/ to PATH for Nextflow' >> $HOME/.bashrc
+   echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
    ```
 
 If you are using a version of Nextflow differing from 24.10.5, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatability issues):
