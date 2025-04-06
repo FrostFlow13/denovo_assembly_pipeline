@@ -6,3 +6,5 @@ work/
 .nextflow*
 # non-hidden nextflow files/directory
 nextflow*
+# data directory
+data/
