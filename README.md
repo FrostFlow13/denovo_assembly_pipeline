@@ -6,11 +6,11 @@ Hello! This is Dr. Andrew Woodruff, and this repository is an attempt to turn th
 
 The workflow was developed and tested on the following:
 
- * Ubuntu `24.04.1 LTS (GNU/Linux 4.4.0-19041-Microsoft x86_64)`
- * Bash `GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)`
- * Conda `25.1.1`
- * [Nextflow](https://www.nextflow.io/) `24.10.5`
- * Java `openjdk version "17.0.10" 2024-01-16`
+ * Ubuntu: `24.04.1 LTS (GNU/Linux 4.4.0-19041-Microsoft x86_64)`
+ * Bash: `GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)`
+ * Conda: `25.1.1`
+ * [Nextflow](https://www.nextflow.io/): `24.10.5`
+ * Java: `openjdk version "17.0.10" 2024-01-16`
 
 ### Setup - Conda
 
