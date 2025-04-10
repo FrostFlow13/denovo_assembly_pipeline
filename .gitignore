@@ -2,9 +2,9 @@
 *_results/
 # default nextflow working directory
 work/
-# hidden nextflow files/directories
-.nextflow*
-# non-hidden nextflow files/directory
-nextflow*
+# hidden nextflow directories
+.nextflow/*
+# hidden nextflow logs
+*.nextflow.log*
 # data directory
 data/
