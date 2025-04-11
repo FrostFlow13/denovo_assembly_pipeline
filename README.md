@@ -53,7 +53,7 @@ Perform the following steps to set up Conda 25.1.1. This is important, as Conda 
 For both Nextflow and Java, installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc.
 
    ```bash
-   # Install SDKMan
+   # Install SDKMan in the current directory (ideally the $HOME directory)
    curl -s https://get.sdkman.io | bash
    
    # Close the terminal and open a new terminal
@@ -64,7 +64,7 @@ For both Nextflow and Java, installation was performed exactly as written in the
    # Confirm Java is installed correctly
    java -version
    
-   # Install Nextflow in the current directory (ideally the home directory)
+   # Install Nextflow in the current directory (ideally the $HOME directory)
    curl -s https://get.nextflow.io | bash
    
    # Make Nextflow executable
