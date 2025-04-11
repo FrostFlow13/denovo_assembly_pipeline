@@ -1,6 +1,6 @@
 # DeNoAsPi (_De Novo_ Assembly Pipeline)
 
-Hello! This is Dr. Andrew Woodruff, and this repository is an attempt to turn the code/processes I used for generation of de novo assemblies using deep long- and short-read sequencing for a heterozygous, diploid organism (https://github.com/FrostFlow13/1376-denovo-assembly) into a proper scalable, semi-automated pipeline (with some intentionally manual steps).
+Hello! I am Dr. Andrew Woodruff, and this repository is an attempt to turn the code/processes I used for generation of _de novo_ assemblies using deep long- and short-read sequencing for a heterozygous, diploid organism (https://github.com/FrostFlow13/1376-denovo-assembly) into a proper scalable, semi-automated pipeline (with some intentionally manual steps). This pipeline is designed specifically for _Candida albicans_, but should be able to be modified to work for other organisms as well. If I ever get the time, I may make a branch that is more organism agnostic (especially after I get more Nextflow experience under my belt).
 
 ## Setup Guide
 
@@ -12,7 +12,7 @@ The workflow was developed and tested on the following:
  * [Nextflow](https://www.nextflow.io/): `24.10.5`
  * Java: `openjdk version "17.0.10" 2024-01-16`
 
-### Setup - Conda
+### Setup - Conda and Mamba
 
 Perform the following steps to set up Conda 25.1.1. This is important, as Conda 25.3.X appears to be incompatible with Nextflow 24.10.5 (Nextflow cannot make Conda environments, due to it using a depreciated argument).
 
@@ -25,11 +25,11 @@ Perform the following steps to set up Conda 25.1.1. This is important, as Conda 
    
    # When prompted to review a license agreement, use the up and down arrow keys to navigate to the bottom, then enter "yes" to agree when prompted to accept the license
    
-   # Verify installation directory (default is the user's home directory - this is where we want it!) - press Enter to confirm
+   # Verify installation directory (default is the user's home directory - this is where we want it!) - press the Enter key to confirm
    
-   # When asked whether to update the shell profile to initialize Conda by default, enter "yes" - this will launch conda whenever you start up a session
+   # When asked whether to update the shell profile to initialize Conda by default, enter "yes" - this will launch Conda whenever you start up a session
    
-   # Close your shell/session and open a new one, and you should see (base) in the command line - Conda is working
+   # Close your shell/session and open a new one, and you should see (base) in the command line
    
    # Test Conda for functionality
    conda list
@@ -37,11 +37,15 @@ Perform the following steps to set up Conda 25.1.1. This is important, as Conda 
    # If it passes, remove the installer
    rm Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
    
-   # Setup Conda's channels
+   # Setup Conda's channels (the "auto_update_conda False" config option ensures Conda doesn't try to update itself past 25.1.1, due to the problem with Nextflow described above)
    conda config --add channels defaults
    conda config --add channels bioconda
    conda config --add channels conda-forge
-   conda config --set channel_priority strict
+   conda config --set channel_priority flexible
+   conda config --set auto_update_conda False
+
+   # Install Mamba in base environment
+   conda install -n base mamba=2.1.0
 ```
 
 ### Setup - Nextflow and Java
@@ -78,7 +82,7 @@ For both Nextflow and Java, installation was performed exactly as written in the
 If you are using a version of Nextflow differing from 24.10.5, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatability issues):
 `NXF_VER=24.10.5 nextflow [run/info/etc]`
 
-The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older version if necessary.
+The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older versions if necessary.
 
 ## Usage
 
@@ -90,7 +94,7 @@ For more information, please feel free to contact myself or Dr. Matthew Anderson
 
 I cannot guarantee it will work for every organism or dataset, especially for organisms/strains that have low heterozygosity of their genomes or long (~75-100+ kb) tracts of homozygosity between heterozygous regions, but it worked for a CRISPR-competent strain of _Candida albicans_ SC5314 (a diploid single-celled yeast, and specifically a Chr5AB disomic derivative of AHY940 from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5422035/, designated MAY1376).
 
-Please do not hesitate to ask questions, as I am going on a journey here to learn either Snakemake or Nextflow for this process. I am not a CLASSICALLY trained bioinformatician or programmer beyond a few classes - I was just a graduate student/researcher at the time I made my first repository (which, in retrospect, was more just an online host for my work instruction file), but I did make a de novo, telomere-to-telomere, haplotype phased assembly. As stated above, this repository is me furthering my skills by turning it into a scalable pipeline.
+Please do not hesitate to ask questions, as I am going on a journey here to learn Nextflow for this process. I am not a CLASSICALLY trained bioinformatician or programmer beyond a few classes - I was just a graduate student/researcher at the time I made my first repository (which, in retrospect, was more just an online host for my work instruction file), but I did make a _de novo_, telomere-to-telomere, haplotype phased assembly. As stated above, this repository is me furthering my skills by turning it into a scalable pipeline.
 
 ## Background on Data Used for Development
 
