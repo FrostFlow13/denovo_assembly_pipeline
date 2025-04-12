@@ -1,6 +1,6 @@
 # DeNoAsPi (_De Novo_ Assembly Pipeline)
 
-Hello! I am Dr. Andrew Woodruff, and this repository is an attempt to turn the code/processes I used for generation of _de novo_ assemblies using deep long- and short-read sequencing for a heterozygous, diploid organism (https://github.com/FrostFlow13/1376-denovo-assembly) into a proper scalable, semi-automated pipeline (with some intentionally manual steps). This pipeline is designed specifically for _Candida albicans_, but should be able to be modified to work for other organisms as well. If I ever get the time, I may make a branch that is more organism agnostic (especially after I get more Nextflow experience under my belt).
+Hello! I am Dr. Andrew Woodruff, and this repository is an attempt to turn the code/processes I used for generation of _de novo_ assemblies using deep short- and long-read sequencing for a heterozygous, diploid organism (https://github.com/FrostFlow13/1376-denovo-assembly) into a proper scalable, semi-automated pipeline (with some intentionally manual steps). This pipeline is designed specifically for _Candida albicans_, but should be able to be modified to work for other organisms as well. If I ever get the time, I may make a branch that is more organism agnostic (especially after I get more Nextflow experience under my belt).
 
 ## Setup Guide
 
@@ -80,7 +80,7 @@ For both Nextflow and Java, installation was performed exactly as written in the
    echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
    ```
 
-If you are using a version of Nextflow differing from 24.10.5, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatability issues):
+If you are using a version of Nextflow differing from 24.10.5, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatibility issues):
 `NXF_VER=24.10.5 nextflow [run/info/etc]`
 
 The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older versions if necessary.
