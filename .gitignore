@@ -8,3 +8,5 @@ work/
 *.nextflow.log*
 # data directory
 data/
+# parameters file
+samples.csv
