@@ -16,6 +16,6 @@ workflow {
     samples_ch = Channel.fromPath(params.samples)
                         .splitCsv( skip: 1 )
 
-    // Run fastp trimming and QC and give completion notice after
+    // Run fastp trimming and QC
     shortTrim(params.srdir, samples_ch)
 }
