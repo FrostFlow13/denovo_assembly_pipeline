@@ -1,5 +1,5 @@
 # results directories
-results/
+*_results/
 # default nextflow working directory
 work/
 # hidden nextflow directories
