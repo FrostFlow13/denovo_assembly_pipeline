@@ -7,11 +7,12 @@ process shortTrim {
 
     conda 'bioconda::fastp==0.24.0'
 
-    publishDir "${PWD}/${params.batch}/${samples[0]}/0-short_trim", mode: 'copy'
+    publishDir "${PWD}/${params.batch}/${samples[0]}/${outdir}", mode: 'copy'
 
     input:
         val srdir
         val samples
+        val outdir
     
     output:
         path "${samples[0]}-fastp.html"

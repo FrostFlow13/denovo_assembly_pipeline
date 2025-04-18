@@ -17,5 +17,5 @@ workflow {
                         .splitCsv( skip: 1 )
 
     // Run fastp trimming and QC
-    shortTrim(params.srdir, samples_ch)
+    shortTrim(params.srdir, samples_ch, outdir = '0-short_trim')
 }
