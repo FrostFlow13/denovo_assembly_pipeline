@@ -4,11 +4,11 @@
  * Default testing parameters
  */
 params.batch = 'test_results'
-params.srdir = "${PWD}/data/short_read"
-params.samples = "${PWD}/test-samples.csv"
+params.srdir = "/srv/dev/denovo_assembly_pipeline/data/short_read"
+params.samples = "/srv/dev/denovo_assembly_pipeline/test-samples.csv"
 
 // Include modules
-include { shortTrim } from "${PWD}/modules/shortTrim.nf"
+include { shortTrim as shortTrim1} from "./modules/shortTrim.nf"
 
 workflow {
 
@@ -17,5 +17,6 @@ workflow {
                         .splitCsv( skip: 1 )
 
     // Run fastp trimming and QC
-    shortTrim(params.srdir, samples_ch, outdir = '0-short_trim')
+    outdir = '0-short_trim'
+    shortTrim1(params.srdir, samples_ch, outdir)
 }

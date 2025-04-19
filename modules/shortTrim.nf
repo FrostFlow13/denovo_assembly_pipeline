@@ -7,7 +7,7 @@ process shortTrim {
 
     conda 'bioconda::fastp==0.24.0'
 
-    publishDir "${PWD}/${params.batch}/${samples[0]}/${outdir}", mode: 'copy'
+    publishDir "${params.batch}/${samples[0]}/${outdir}", mode: 'copy'
 
     input:
         val srdir
