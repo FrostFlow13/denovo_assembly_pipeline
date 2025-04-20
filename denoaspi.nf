@@ -5,6 +5,7 @@
  */
 params.batch = 'test_results'
 params.srdir = "/srv/dev/denovo_assembly_pipeline/data/short_read"
+params.lrdir = "/srv/dev/denovo_assembly_pipeline/data/long_read"
 params.samples = "/srv/dev/denovo_assembly_pipeline/test-samples.csv"
 
 // Include modules

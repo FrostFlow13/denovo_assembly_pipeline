@@ -15,10 +15,10 @@ The workflow was developed and tested on the following:
 
 ### Setup - Conda and Mamba
 
-Perform the following steps to set up Conda 25.1.1. This is important, as Conda 25.3.X appears to be incompatible with Nextflow 24.10.5 (Nextflow cannot make Conda environments, due to it using a depreciated argument). 
+Perform the following steps to set up Conda (v25.1.1). This is important, as Conda v25.3.X appears to be incompatible with Nextflow (v24.10.5) (Nextflow cannot make Conda environments, due to it using a depreciated argument). 
 
 ```bash
-# Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9
+# Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9 into the current directory (ideally $HOME directory)
 wget https://repo.anaconda.com/miniconda/Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
 
 # Runs the installation script
@@ -48,11 +48,11 @@ conda config --set auto_update_conda False
 # Install Mamba in base environment
 conda install -n base mamba=2.1.0
 ```
-_NOTE - Mamba 2.1.0 is currently disabled in nextflow.config, as it also appears to have compatibility issues with Nextflow. However, for non-Nextflow environments or installs, Mamba should still be able to used!_
+_NOTE - Mamba v2.1.0 is currently disabled in nextflow.config, as it also appears to have compatibility issues with Nextflow. However, for non-Nextflow environments or installs, Mamba should still be able to used!_
 
 ### Setup - Nextflow and Java
 
-For both Nextflow and Java, installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc.
+For both Nextflow (v24.10.5) and Java (v17.0.10), installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc.
 
 ```bash
 # Install SDKMan in the current directory (ideally the $HOME directory)
@@ -81,12 +81,28 @@ echo '# Adds the $HOME/.local/bin/ to PATH for Nextflow' >> $HOME/.bashrc
 echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
 ```
 
-If you are using a version of Nextflow differing from 24.10.5, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatibility issues):
+If you are using a version of Nextflow differing from v24.10.5, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatibility issues):
 `NXF_VER=24.10.5 nextflow [run/info/etc]`
 
 The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older versions if necessary.
 
-[IN DEVELOPMENT - NEED TO ADD DORADO AND RERIO INSTALLATION]
+### Setup - Dorado (Demultiplexing/Adapter Trimming)
+
+For Dorado (v0.9.6), installation was performed as written in the [Dorado installation instructions](https://github.com/nanoporetech/dorado?tab=readme-ov-file#installation), including adding the bin path to the ~/.bashrc.
+
+```bash
+# Pulls Dorado v0.9.6 into the current directory (ideally the $HOME directory)
+wget https://cdn.oxfordnanoportal.com/software/analysis/dorado-0.9.6-linux-x64.tar.gz
+
+# Extract the files into the current directory
+tar -xvzf dorado-0.9.6-linux-x64.tar.gz
+
+# Add the bin path to PATH permanently
+echo '# Adds the $HOME/dorado-0.9.6-linux-x64/bin/ to PATH for Dorado' >> $HOME/.bashrc
+echo 'export PATH="$PATH:$HOME/dorado-0.9.6-linux-x64/bin"' >> $HOME/.bashrc
+```
+
+[IN DEVELOPMENT - NEED TO ADD RERIO INSTALLATION]
 
 ## Usage
 
@@ -100,9 +116,11 @@ git clone https://github.com/FrostFlow13/denovo_assembly_pipeline.git
 
 ### Preparing Your Data
 
-In the `denovo_assembly_pipeline` directory (or whatever you renamed it to), create a directory called `data`, and within it two directories called `short_read` and `long_read`. After this, move copies of your short- and long-reads to be processed into the respective directories. This allows DeNoAsPi to have a consistent location for finding them.
+In the `denovo_assembly_pipeline` directory (or whatever you renamed it to), create a directory called `data`, and within it two directories called `short_read` and `long_read`. After this, move copies of your short- and long-reads to be processed into the respective directories (they must be in .fastq.gz or .fq.gz format). This allows DeNoAsPi to have a consistent location for finding them.
 
 Alternatively, you can set the parameter for where DeNoAsPi finds your input data (see below in "Running DeNoAsPi").
+
+_NOTE - DeNoAsPi currently assumes your short-reads are Illumina, paired-end, and already demultiplexed (but does not assume they are adapter/barcode trimmed). It also currently assumes your long-reads are ONT and are already demultiplexed (but does not assume they are adapter/barcode trimmed). If I ever have time/energy to do so, I may make it more robust in read types and formats, and may make it so that it can also demultiplex reads._
 
 ### Generating a sample.csv File
 
