@@ -15,7 +15,7 @@ The workflow was developed and tested on the following:
 
 ### Setup - Conda and Mamba
 
-Perform the following steps to set up Conda 25.1.1. This is important, as Conda 25.3.X appears to be incompatible with Nextflow 24.10.5 (Nextflow cannot make Conda environments, due to it using a depreciated argument).
+Perform the following steps to set up Conda 25.1.1. This is important, as Conda 25.3.X appears to be incompatible with Nextflow 24.10.5 (Nextflow cannot make Conda environments, due to it using a depreciated argument). 
 
    ```bash
    # Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9
@@ -48,6 +48,7 @@ Perform the following steps to set up Conda 25.1.1. This is important, as Conda 
    # Install Mamba in base environment
    conda install -n base mamba=2.1.0
 ```
+_NOTE - Mamba 2.1.0 is currently disabled in nextflow.config, as it also appears to have compatibility issues with Nextflow. However, for non-Nextflow environments or installs, Mamba should still be able to used!_
 
 ### Setup - Nextflow and Java
 
@@ -86,6 +87,29 @@ If you are using a version of Nextflow differing from 24.10.5, you can temporari
 The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older versions if necessary.
 
 ## Usage
+
+### Cloning the Repository
+
+Clone the repository into whatever folder you will be performing the work in to download the scripts and modules.
+   ```
+   cd /your/processing/directory/
+   git clone https://github.com/FrostFlow13/denovo_assembly_pipeline.git
+   ```
+
+### Preparing Your Data
+
+In the `denovo_assembly_pipeline` directory (or whatever you renamed it to), create a directory called `data`, and within it two directories called `short_read` and `long_read`. After this, move copies of your short- and long-reads to be processed into the respective directories. This allows DeNoAsPi to have a consistent location for finding them.
+
+Alternatively, you can set the parameter for where DeNoAsPi finds your input data (see below in "Running DeNoAsPi").
+
+### Generating a sample.csv File
+
+**Table 1** Set up your sample.csv file in the same vein as the example shown below (_file still in development - more sections likely to be added to handle alternative file types or feed certain tools information on kit chemistries_):
+
+| sample_name | srfile1 | srfile2 | lrfile |
+| 1376 | 1376_S46_R1.fastq.gz | 1376_S46_R2.fastq.gz | 1376_barcode15.fastq.gz |
+| 1739 | MAnderson014_1699-1-13-2_R210_S14_R1_001.fastq.gz | MAnderson014_1699-1-13-2_R210_S14_R2_001.fastq.gz | 1739_barcode16.fastq.gz |
+| 1740 | MAnderson014_1700-1-5-1_R210_S16_R1_001.fastq.gz | MAnderson014_1700-1-5-1_R210_S16_R2_001.fastq.gz | 1740_barcode17.fastq.gz |
 
 [IN DEVELOPMENT]
 
