@@ -17,36 +17,36 @@ The workflow was developed and tested on the following:
 
 Perform the following steps to set up Conda 25.1.1. This is important, as Conda 25.3.X appears to be incompatible with Nextflow 24.10.5 (Nextflow cannot make Conda environments, due to it using a depreciated argument). 
 
-   ```bash
-   # Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9
-   wget https://repo.anaconda.com/miniconda/Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
-   
-   # Runs the installation script
-   bash Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
-   
-   # When prompted to review a license agreement, use the up and down arrow keys to navigate to the bottom, then enter "yes" to agree when prompted to accept the license
-   
-   # Verify installation directory (default is the user's home directory - this is where we want it!) - press the Enter key to confirm
-   
-   # When asked whether to update the shell profile to initialize Conda by default, enter "yes" - this will launch Conda whenever you start up a session
-   
-   # Close your shell/session and open a new one, and you should see (base) in the command line
-   
-   # Test Conda for functionality
-   conda list
-   
-   # If it passes, remove the installer
-   rm Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
-   
-   # Setup Conda's channels (the "auto_update_conda False" config option ensures Conda doesn't try to update itself past 25.1.1, due to the problem with Nextflow described above)
-   conda config --add channels defaults
-   conda config --add channels bioconda
-   conda config --add channels conda-forge
-   conda config --set channel_priority flexible
-   conda config --set auto_update_conda False
+```bash
+# Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9
+wget https://repo.anaconda.com/miniconda/Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
 
-   # Install Mamba in base environment
-   conda install -n base mamba=2.1.0
+# Runs the installation script
+bash Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
+
+# When prompted to review a license agreement, use the up and down arrow keys to navigate to the bottom, then enter "yes" to agree when prompted to accept the license
+
+# Verify installation directory (default is the user's home directory - this is where we want it!) - press the Enter key to confirm
+
+# When asked whether to update the shell profile to initialize Conda by default, enter "yes" - this will launch Conda whenever you start up a session
+
+# Close your shell/session and open a new one, and you should see (base) in the command line
+
+# Test Conda for functionality
+conda list
+
+# If it passes, remove the installer
+rm Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
+
+# Setup Conda's channels (the "auto_update_conda False" config option ensures Conda doesn't try to update itself past 25.1.1, due to the problem with Nextflow described above)
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority flexible
+conda config --set auto_update_conda False
+
+# Install Mamba in base environment
+conda install -n base mamba=2.1.0
 ```
 _NOTE - Mamba 2.1.0 is currently disabled in nextflow.config, as it also appears to have compatibility issues with Nextflow. However, for non-Nextflow environments or installs, Mamba should still be able to used!_
 
@@ -54,47 +54,49 @@ _NOTE - Mamba 2.1.0 is currently disabled in nextflow.config, as it also appears
 
 For both Nextflow and Java, installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc.
 
-   ```bash
-   # Install SDKMan in the current directory (ideally the $HOME directory)
-   curl -s https://get.sdkman.io | bash
-   
-   # Close the terminal and open a new terminal
-   
-   # Install Java
-   sdk install java 17.0.10-tem
-   
-   # Confirm Java is installed correctly
-   java -version
-   
-   # Install Nextflow in the current directory (ideally the $HOME directory)
-   curl -s https://get.nextflow.io | bash
-   
-   # Make Nextflow executable
-   chmod +x nextflow
-   
-   # Move Nextflow into an executable path
-   mkdir -p $HOME/.local/bin/
-   mv nextflow $HOME/.local/bin/
-   
-   # Adds the $HOME/.local/bin/ to PATH permanently
-   echo '# Adds the $HOME/.local/bin/ to PATH for Nextflow' >> $HOME/.bashrc
-   echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
-   ```
+```bash
+# Install SDKMan in the current directory (ideally the $HOME directory)
+curl -s https://get.sdkman.io | bash
+
+# Close the terminal and open a new terminal
+
+# Install Java
+sdk install java 17.0.10-tem
+
+# Confirm Java is installed correctly
+java -version
+
+# Install Nextflow in the current directory (ideally the $HOME directory)
+curl -s https://get.nextflow.io | bash
+
+# Make Nextflow executable
+chmod +x nextflow
+
+# Move Nextflow into an executable path
+mkdir -p $HOME/.local/bin/
+mv nextflow $HOME/.local/bin/
+
+# Adds the $HOME/.local/bin/ to PATH permanently
+echo '# Adds the $HOME/.local/bin/ to PATH for Nextflow' >> $HOME/.bashrc
+echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
+```
 
 If you are using a version of Nextflow differing from 24.10.5, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatibility issues):
 `NXF_VER=24.10.5 nextflow [run/info/etc]`
 
 The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older versions if necessary.
 
+[IN DEVELOPMENT - NEED TO ADD DORADO AND RERIO INSTALLATION]
+
 ## Usage
 
 ### Cloning the Repository
 
 Clone the repository into whatever folder you will be performing the work in to download the scripts and modules.
-   ```
-   cd /your/processing/directory/
-   git clone https://github.com/FrostFlow13/denovo_assembly_pipeline.git
-   ```
+```
+cd /your/processing/directory/
+git clone https://github.com/FrostFlow13/denovo_assembly_pipeline.git
+```
 
 ### Preparing Your Data
 
@@ -112,7 +114,15 @@ Alternatively, you can set the parameter for where DeNoAsPi finds your input dat
 | 1739 | MAnderson014_1699-1-13-2_R210_S14_R1_001.fastq.gz | MAnderson014_1699-1-13-2_R210_S14_R2_001.fastq.gz | 1739_barcode16.fastq.gz |
 | 1740 | MAnderson014_1700-1-5-1_R210_S16_R1_001.fastq.gz | MAnderson014_1700-1-5-1_R210_S16_R2_001.fastq.gz | 1740_barcode17.fastq.gz |
 
-[IN DEVELOPMENT]
+### Running DeNoAsPi
+
+In the `denovo_assembly_pipeline` directory (or whatever you renamed it to), run the following:
+
+```
+nextflow run denoaspie.nf
+```
+
+[IN DEVELOPMENT - DESCRIBE PARAMETERS AND GENERATE A HELP COMMAND]
 
 ## Closing Information
 
