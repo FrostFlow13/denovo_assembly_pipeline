@@ -107,6 +107,7 @@ Alternatively, you can set the parameter for where DeNoAsPi finds your input dat
 **Table 1** Set up your sample.csv file in the same vein as the example shown below (_file still in development - more sections likely to be added to handle alternative file types or feed certain tools information on kit chemistries_):
 
 | sample_name | srfile1 | srfile2 | lrfile |
+| --- | --- | --- | --- |
 | 1376 | 1376_S46_R1.fastq.gz | 1376_S46_R2.fastq.gz | 1376_barcode15.fastq.gz |
 | 1739 | MAnderson014_1699-1-13-2_R210_S14_R1_001.fastq.gz | MAnderson014_1699-1-13-2_R210_S14_R2_001.fastq.gz | 1739_barcode16.fastq.gz |
 | 1740 | MAnderson014_1700-1-5-1_R210_S16_R1_001.fastq.gz | MAnderson014_1700-1-5-1_R210_S16_R2_001.fastq.gz | 1740_barcode17.fastq.gz |
