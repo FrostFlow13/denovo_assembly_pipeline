@@ -10,3 +10,5 @@ work/
 data/
 # parameters file
 test-samples.csv
+# testing directory
+test/
