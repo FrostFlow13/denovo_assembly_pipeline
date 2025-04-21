@@ -120,7 +120,7 @@ In the `denovo_assembly_pipeline` directory (or whatever you renamed it to), cre
 
 Alternatively, you can set the parameter for where DeNoAsPi finds your input data (see below in "Running DeNoAsPi").
 
-_NOTE - DeNoAsPi currently assumes your short-reads are Illumina, paired-end, and already demultiplexed (but does not assume they are adapter/barcode trimmed). It also currently assumes your long-reads are ONT and are already demultiplexed (but does not assume they are adapter/barcode trimmed). If I ever have time/energy to do so, I may make it more robust in read types and formats, and may make it so that it can also demultiplex reads._
+_NOTE - DeNoAsPi currently assumes your short-reads are Illumina, paired-end, and already demultiplexed, but does not assume they are adapter/barcode trimmed). It also currently assumes your long-reads are ONT and already demultiplexed, but does not assume they are already adapter/barcode trimmed (these are taken care of by Dorado's demux (barcode trimming) and trim (adapter/primer trimming)). If I ever have time/energy to do so, I may make it more robust in read types and formats, and may make it so that it can also demultiplex short-reads._
 
 ### Generating a sample.csv File
 
