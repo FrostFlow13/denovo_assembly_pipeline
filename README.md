@@ -8,21 +8,21 @@ The workflow was developed and tested on the following:
 
  * Ubuntu: `24.04.1 LTS (GNU/Linux 4.4.0-19041-Microsoft x86_64)`
  * Bash: `GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)`
- * Conda: `25.1.1`
- * Mamba: `2.1.0`
- * [Nextflow](https://www.nextflow.io/): `24.10.5`
+ * Conda: `25.3.1`
+ * Mamba: `2.1.1`
+ * [Nextflow](https://www.nextflow.io/): `24.10.5` [WAIT UNTIL VERSION INCORPORATING [THE CONDA FIX](https://github.com/nextflow-io/nextflow/pull/6010) IS OUT]
  * Java: `openjdk version "17.0.10" 2024-01-16`
 
 ### Setup - Conda and Mamba
 
-Perform the following steps to set up Conda (v25.1.1). This is important, as Conda v25.3.X appears to be incompatible with Nextflow (v24.10.5) (Nextflow cannot make Conda environments, due to it using a depreciated argument). 
+Perform the following steps to set up Conda (v25.3.1).
 
 ```bash
-# Pulls down Miniconda3 version 25.1.1 with Python version 3.12.9 into the current directory (ideally $HOME directory)
-wget https://repo.anaconda.com/miniconda/Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
+# Pulls down Miniconda3 version 25.3.1 with Python version 3.12 into the current directory (ideally $HOME directory)
+wget https://repo.anaconda.com/miniconda/Miniconda3-py312_25.3.1-1-Linux-x86_64.sh
 
 # Runs the installation script
-bash Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
+bash Miniconda3-py312_25.3.1-1-Linux-x86_64.sh
 
 # When prompted to review a license agreement, use the up and down arrow keys to navigate to the bottom, then enter "yes" to agree when prompted to accept the license
 
@@ -36,9 +36,9 @@ bash Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
 conda list
 
 # If it passes, remove the installer
-rm Miniconda3-py312_25.1.1-2-Linux-x86_64.sh
+rm Miniconda3-py312_25.3.1-1-Linux-x86_64.sh
 
-# Setup Conda's channels (the "auto_update_conda False" config option ensures Conda doesn't try to update itself past 25.1.1, due to the problem with Nextflow described above)
+# Setup Conda's channels (the "auto_update_conda False" config option ensures Conda doesn't try to update itself past 25.3.1)
 conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
@@ -46,9 +46,8 @@ conda config --set channel_priority flexible
 conda config --set auto_update_conda False
 
 # Install Mamba in base environment
-conda install -n base mamba=2.1.0
+conda install -n base mamba=2.1.1
 ```
-_NOTE - Mamba v2.1.0 is currently disabled in nextflow.config, as it also appears to have compatibility issues with Nextflow. However, for non-Nextflow environments or installs, Mamba should still be able to used!_
 
 ### Setup - Nextflow and Java
 
@@ -81,8 +80,8 @@ echo '# Adds the $HOME/.local/bin/ to PATH for Nextflow' >> $HOME/.bashrc
 echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
 ```
 
-If you are using a version of Nextflow differing from v24.10.5, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatibility issues):
-`NXF_VER=24.10.5 nextflow [run/info/etc]`
+If you are using a version of Nextflow differing from v24.10.5 [WAIT UNTIL VERSION INCORPORATING [THE CONDA FIX](https://github.com/nextflow-io/nextflow/pull/6010) IS OUT], you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatibility issues):
+`NXF_VER=24.10.5 nextflow [run/info/etc]` [WAIT UNTIL VERSION INCORPORATING [THE CONDA FIX](https://github.com/nextflow-io/nextflow/pull/6010) IS OUT]
 
 The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older versions if necessary.
 
@@ -120,17 +119,17 @@ In the `denovo_assembly_pipeline` directory (or whatever you renamed it to), cre
 
 Alternatively, you can set the parameter for where DeNoAsPi finds your input data (see below in "Running DeNoAsPi").
 
-_NOTE - DeNoAsPi currently assumes your short-reads are Illumina, paired-end, and already demultiplexed, but does not assume they are adapter/barcode trimmed). It also currently assumes your long-reads are ONT and already demultiplexed, but does not assume they are already adapter/barcode trimmed (these are taken care of by Dorado's demux (barcode trimming) and trim (adapter/primer trimming)). If I ever have time/energy to do so, I may make it more robust in read types and formats, and may make it so that it can also demultiplex short-reads._
+_NOTE - DeNoAsPi currently assumes your short-reads are Illumina, paired-end, and already demultiplexed, but does not assume they are adapter/barcode trimmed). It also currently assumes your long-reads are ONT and already demultiplexed, but does not assume they are already adapter/barcode trimmed (these are taken care of by Dorado's demux (barcode trimming) and trim (adapter/primer trimming)). I plan to make the demux and adapter/primer trimming optional, if those have already been performed by the basecaller/sequencing machine. If I ever have time/energy to do so, I may make it more robust in read types and formats, and may make it so that it can also demultiplex short-reads._
 
 ### Generating a sample.csv File
 
-**Table 1** Set up your sample.csv file in the same vein as the example shown below (_file still in development - more sections likely to be added to handle alternative file types or feed certain tools information on kit chemistries_):
+**Table 1** Set up your sample.csv file in the same vein as the example shown below (_file still in development - more sections likely to be added to handle alternative file types or feed certain tools information on kit chemistries (for ONT sequences, barcode sequences for specific kits can be found here: https://nanoporetech.com/document/chemistry-technical-document. This is important, as DeNoAsPi uses these barcode sequences to fish out the adapter sequence from the adapter+barcode identified by Fastplong for use in removing reads with internal adapters_)):
 
-| sample_name | srfile1 | srfile2 | lrfile |
-| --- | --- | --- | --- |
-| 1376 | 1376_S46_R1.fastq.gz | 1376_S46_R2.fastq.gz | 1376_barcode15.fastq.gz |
-| 1739 | MAnderson014_1699-1-13-2_R210_S14_R1_001.fastq.gz | MAnderson014_1699-1-13-2_R210_S14_R2_001.fastq.gz | 1739_barcode16.fastq.gz |
-| 1740 | MAnderson014_1700-1-5-1_R210_S16_R1_001.fastq.gz | MAnderson014_1700-1-5-1_R210_S16_R2_001.fastq.gz | 1740_barcode17.fastq.gz |
+| sample_name | srfile1 | srfile2 | lrfile | lrkit | lrbarcode | lrbarFseq | lrbarRseq |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1376 | 1376_S46_R1.fastq.gz | 1376_S46_R2.fastq.gz | 1376_barcode15.fastq.gz | SQK-NBD114-24 | barcode15 | AGGTCTACCTCGCTAACACCACTG | CAGTGGTGTTAGCGAGGTAGACCT |
+| 1739 | MAnderson014_1699-1-13-2_R210_S14_R1_001.fastq.gz | MAnderson014_1699-1-13-2_R210_S14_R2_001.fastq.gz | 1739_barcode16.fastq.gz | SQK-NBD114-24 | barcode16 | CGTCAACTGACAGTGGTTCGTACT | AGTACGAACCACTGTCAGTTGACG |
+| 1740 | MAnderson014_1700-1-5-1_R210_S16_R1_001.fastq.gz | MAnderson014_1700-1-5-1_R210_S16_R2_001.fastq.gz | 1740_barcode17.fastq.gz | SQK-NBD114-24 | barcode 17 | ACCCTCCAGGAAAGTACCTCTGAT | ATCAGAGGTACTTTCCTGGAGGGT |
 
 ### Running DeNoAsPi
 
