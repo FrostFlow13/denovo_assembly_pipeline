@@ -51,7 +51,7 @@ conda install -n base mamba=2.1.1
 
 ### Setup - Nextflow and Java
 
-For both Nextflow (v24.10.5) and Java (v17.0.10), installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc.
+For both Nextflow (v24.10.5) [WAIT UNTIL VERSION INCORPORATING [THE CONDA FIX](https://github.com/nextflow-io/nextflow/pull/6010) IS OUT] and Java (v17.0.10), installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc.
 
 ```bash
 # Install SDKMan in the current directory (ideally the $HOME directory)
