@@ -10,7 +10,7 @@ The workflow was developed and tested on the following:
  * Bash: `GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)`
  * Conda: `25.3.1`
  * Mamba: `2.1.1`
- * [Nextflow](https://www.nextflow.io/): `24.10.5` [WAIT UNTIL VERSION INCORPORATING [THE CONDA FIX](https://github.com/nextflow-io/nextflow/pull/6010) IS OUT]
+ * [Nextflow](https://www.nextflow.io/): `25.04.2`
  * Java: `openjdk version "17.0.10" 2024-01-16`
 
 ### Setup - Conda and Mamba
@@ -51,7 +51,7 @@ conda install -n base mamba=2.1.1
 
 ### Setup - Nextflow and Java
 
-For both Nextflow (v24.10.5) [WAIT UNTIL VERSION INCORPORATING [THE CONDA FIX](https://github.com/nextflow-io/nextflow/pull/6010) IS OUT] and Java (v17.0.10), installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc.
+For both Nextflow (v25.04.2) and Java (v17.0.10), installation was performed exactly as written in the [Nextflow installation instructions](https://nextflow.io/docs/stable/install.html), including adding the directory to ~/.bashrc.
 
 ```bash
 # Install SDKMan in the current directory (ideally the $HOME directory)
@@ -80,8 +80,8 @@ echo '# Adds the $HOME/.local/bin/ to PATH for Nextflow' >> $HOME/.bashrc
 echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
 ```
 
-If you are using a version of Nextflow differing from v24.10.5 [WAIT UNTIL VERSION INCORPORATING [THE CONDA FIX](https://github.com/nextflow-io/nextflow/pull/6010) IS OUT], you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatibility issues):
-`NXF_VER=24.10.5 nextflow [run/info/etc]` [WAIT UNTIL VERSION INCORPORATING [THE CONDA FIX](https://github.com/nextflow-io/nextflow/pull/6010) IS OUT]
+If you are using a version of Nextflow differing from v25.04.2, you can temporarily switch to another version of Nextflow using the following (assuming you run into any compatibility issues):
+`NXF_VER=25.04.2 nextflow [run/info/etc]`
 
 The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older versions if necessary.
 
