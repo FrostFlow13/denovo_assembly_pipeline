@@ -85,6 +85,13 @@ If you are using a version of Nextflow differing from v25.04.2, you can temporar
 
 The nice part about NXF_VER is that once you run it once, it won't have to download the dependencies again, making it fairly easy to run older versions if necessary.
 
+Alternatively, if you intend to only use Nextflow v25.04.2 after a newer version has been released, you may use the following to add it to your user profile and set Nextflow to this version for every session:
+```bash
+# Adds the NXF_VER to your user profile permanently
+echo '# Adds the NXF_VER=25.04.2 to PATH for Nextflow' >> $HOME/.bashrc
+echo 'export NXF_VER=25.04.2' >> $HOME/.bashrc
+```
+
 ### Setup - Dorado (Demultiplexing/Adapter Trimming)
 
 For Dorado (v0.9.6), installation was performed as written in the [Dorado installation instructions](https://github.com/nanoporetech/dorado?tab=readme-ov-file#installation), including adding the bin path to the ~/.bashrc.
